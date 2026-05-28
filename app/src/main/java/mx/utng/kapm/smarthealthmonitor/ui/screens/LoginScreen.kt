@@ -1,4 +1,4 @@
-package mx.utng.kapm.smarthealthmonitor
+package mx.utng.kapm.smarthealthmonitor.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.Preview
 import mx.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
 
 @Composable
