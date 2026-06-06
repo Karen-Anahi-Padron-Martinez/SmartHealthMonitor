@@ -13,14 +13,9 @@ import kotlinx.coroutines.launch
 class WearMainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Registrar Health Services
+        // Registrar el listener de Health Services
         lifecycleScope.launch {
             HealthDataService.registrar(applicationContext)
-        }
-
-        setContent {
-            WearApp()
         }
     }
 }
