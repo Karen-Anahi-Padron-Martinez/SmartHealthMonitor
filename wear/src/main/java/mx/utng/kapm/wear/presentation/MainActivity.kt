@@ -4,18 +4,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class WearMainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Registrar el listener de Health Services al iniciar la app en el reloj
+        // Registrar Health Services
         lifecycleScope.launch {
-            try {
-                HealthDataService.registrar(applicationContext)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            HealthDataService.registrar(applicationContext)
         }
+
+        setContent {
+            WearApp()
+        }
+    }
+}
+
+@androidx.compose.runtime.Composable
+fun WearApp() {
+    androidx.wear.compose.material.MaterialTheme {
+        androidx.wear.compose.material.Text("Monitoreo FC Activo")
     }
 }

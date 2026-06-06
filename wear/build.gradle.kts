@@ -55,8 +55,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
-
-    // Coroutines await() para Guava ListenableFuture
     implementation(libs.androidx.health.services.client)
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.guava)
