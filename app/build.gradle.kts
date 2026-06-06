@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp") version "2.0.0-1.0.21"
+
 }
 
 android {
@@ -51,9 +53,21 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.compose.material.icons.extended)
     implementation("androidx.navigation:navigation-compose:2.8.0")
-    implementation("com.google.android.gms:play-services-wearable:18.2.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
+    implementation(libs.play.services.wearable)
+    implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.health.services.client)
+    implementation(libs.guava)
+    implementation(libs.kotlinx.coroutines.guava)
+    // Room
+    // Room
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
