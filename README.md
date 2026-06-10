@@ -35,4 +35,4 @@ Desarrollada como proyecto integrador — UTNG 9° Cuatrimestre 2025.
 
 ## Autor
 
-Karen Anahi Padrón Martínez — UTNG — Ing. en Desarrollo y Gestión de Software
+
