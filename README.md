@@ -1,71 +1,38 @@
-
-
 # SmartHealth Monitor
 
-Aplicación Android multiplataforma para monitoreo de salud personal.
-Desarrollada como proyecto integrador en UTNG — 9° Cuatrimestre 2025.
+![Android CI](https://img.shields.io/badge/Android-API26+-green)
+![Compose](https://img.shields.io/badge/Jetpack%20Compose-MD3-blue)
+
+Aplicación Android de monitoreo de salud personal en tiempo real.
+Desarrollada como proyecto integrador — UTNG 9° Cuatrimestre 2025.
 
 ## Stack tecnológico
-- Kotlin + Jetpack Compose
-- Material Design 3
-- Wearable Data Layer API (Wear OS)
-- Android TV / Leanback + Media3
-- Jetpack Navigation + Room + StateFlow
 
-## Pantallas implementadas
-- [x] LoginScreen — S4
-- [x] DashboardScreen — S5
-- [ ] Historial + wearable real — S6
-- [ ] Android TV — S10-S12
+| Tecnología | Uso |
+|---|---|
+| Kotlin + Jetpack Compose | UI declarativa con Material Design 3 |
+| Wearable Data Layer API  | Comunicación reloj ↔ teléfono (BLE) |
+| Health Services API     | Sensor FC real en background (Wear OS) |
+| Room Database           | Historial persistente de lecturas FC |
+| Jetpack Navigation      | NavHost entre 4 pantallas |
+| GitHub + Conventional Commits | Control de versiones profesional |
 
-## Autor
-Karen Anahi Padron Martinez — UTNG — karen.padron@utng.edu.mx
+## Pantallas
+
+| Pantalla | Descripción |
+|---|---|
+| LoginScreen | Autenticación con validación y State |
+| DashboardScreen | FC y Pasos en tiempo real del wearable |
+| HistorialScreen | Lecturas persistidas en Room con Flow reactivo |
+| AlertaScreen | AlertDialog MD3 + Snackbar de confirmación |
 
 ## Capturas de pantalla
 
-<div align="center">
+![Login](screenshots/login.png)
+![Dashboard](screenshots/dashboard.png)
+![Historial](screenshots/historial.png)
+![Alerta](screenshots/alerta.png)
 
-### Login
-<img src="screenshots/login.png" alt="Login Screen" width="300"/>
-
-*Pantalla de inicio de sesión con validación de email y contraseña*
-
-### Dashboard
-<img src="screenshots/dashboard.png" alt="Dashboard Screen" width="300"/>
-
-*Dashboard principal con FC, pasos e historial reciente*
-
-</div>
-
-## Stack tecnológico
-- Kotlin + Jetpack Compose
-- Material Design 3
-- Wearable Data Layer API (Wear OS)
-- Android TV / Leanback + Media3
-- Jetpack Navigation + Room + StateFlow
-
-
-## ¿Qué hace este PR?
-Integra Health Services API para lectura real del sensor FC del wearable.
-Agrega Room DB para persistir el historial de lecturas.
-Conecta HistorialScreen con Room vía StateFlow reactivo.
- 
-## Archivos creados/modificados
-- [x] wear/.../HealthDataService.kt — PassiveMonitoringClient
-- [x] data/db/LecturaFC.kt — @Entity Room
-- [x] data/db/LecturaFCDao.kt — @Dao con Flow
-- [x] data/db/SmartHealthDB.kt — @Database singleton
-- [x] data/SmartHealthRepository.kt — actualizado con Room
-- [x] ui/viewmodel/DashboardViewModel.kt — historial desde Room
-- [x] ui/screens/HistorialScreen.kt — completo con estado vacío
-- [x] navigation/NavGraph.kt — HistorialScreen real
- 
-## Cómo probar
-1. Emulador Wear OS → Extended Controls → Health Services → mover slider FC.
-2. Verificar que Dashboard muestra el valor del slider en tiempo real.
-3. Abrir Historial: lecturas deben aparecer en orden descendente.
-4. FC > 100 debe aparecer en rojo.
-5. Cerrar y reabrir la app: historial debe persistir.
- 
+## Autor
 
 
