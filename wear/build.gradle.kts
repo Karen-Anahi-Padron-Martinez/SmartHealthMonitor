@@ -58,6 +58,19 @@ dependencies {
     implementation(libs.androidx.health.services.client)
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.guava)
+    // Compose for Wear OS — ScalingLazyColumn, TimeText, PositionIndicator
+    implementation("androidx.wear.compose:compose-material:1.3.1")
+    implementation("androidx.wear.compose:compose-foundation:1.3.1")
+
+// Wear OS Navigation — SwipeDismissableNavHost
+    implementation("androidx.wear.compose:compose-navigation:1.3.1")
+
+// Horologist — utilidades adicionales de Google para Wear OS
+    implementation("com.google.android.horologist:horologist-compose-layout:0.6.17")
+    implementation("com.google.android.horologist:horologist-compose-material:0.6.17")
+
+// ViewModel en Wear OS
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
 
 
