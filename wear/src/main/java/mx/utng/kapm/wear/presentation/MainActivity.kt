@@ -1,4 +1,4 @@
-package mx.edu.utng.kapm.wear.presentation
+package mx.utng.kapm.wear.presentation
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import mx.edu.utng.kapm.wear.HealthDataService
+import mx.utng.kapm.wear.HealthDataService
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
@@ -26,7 +26,7 @@ import androidx.health.services.client.data.DataPointContainer
 import androidx.health.services.client.data.DataType
 import androidx.health.services.client.data.DeltaDataType
 import androidx.health.services.client.data.SampleDataPoint
-import mx.utng.kapm.wear.presentation.SmartHealthWearNavGraph
+import mx.utng.kapm.wear.presentation.WearHealthState
 
 class MainActivity : ComponentActivity() {
 
