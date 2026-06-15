@@ -1,6 +1,5 @@
 package mx.utng.kapm.wear.presentation
 
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -12,6 +11,7 @@ import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 object WearScreens {
     const val DASHBOARD = "wear_dashboard"
     const val ALERTA    = "wear_alerta"
+    const val HISTORIAL = "wear_historial"
 }
 
 @Composable
@@ -36,6 +36,17 @@ fun SmartHealthWearNavGraph() {
                 fc          = fc,
                 onConfirmar = { navController.popBackStack() },
                 onCancelar  = { navController.popBackStack() }
+            )
+        }
+        composable(WearScreens.HISTORIAL) {
+            WearHistorialScreen(
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(WearScreens.DASHBOARD) {
+            WearDashboardScreen(
+                onAlertClick     = { navController.navigate(WearScreens.ALERTA) },
+                onHistorialClick = { navController.navigate(WearScreens.HISTORIAL) }
             )
         }
     }
