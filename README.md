@@ -44,6 +44,10 @@ Desarrollada como proyecto integrador — UTNG 9° Cuatrimestre 2025.
 
 ![WatchFace](screenshots/watchface.png)
 ![WearDashboard](screenshots/wear_dashboard.png)
+<img width="454" height="454" alt="Screenshot_20260611_122747" src="https://github.com/user-attachments/assets/e38157e4-c92a-4708-bc8b-0d05c84f665d" />
+<img width="587" height="567" alt="Captura de pantalla 2026-06-16 170047" src="https://github.com/user-attachments/assets/d9eae7a0-777d-43c5-bb16-c76c32d91d4d" />
+
+
 
 ## Autor
 Karen Anahi Padron Martinez — UTNG — Ing. en Desarrollo y Gestión de Software
