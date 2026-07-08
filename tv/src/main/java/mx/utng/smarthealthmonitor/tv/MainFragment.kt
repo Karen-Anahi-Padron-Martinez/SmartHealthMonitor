@@ -66,14 +66,12 @@ class MainFragment : BrowseSupportFragment() {
         histAdapter = ArrayObjectAdapter(FCCardPresenter())
         rowsAdapter.add(ListRow(HeaderItem(1, "Historial FC"), histAdapter))
 
-        /*
         // ── Fila 3: Alertas recientes (Reto) ───────────
         val alertasAdapter = ArrayObjectAdapter(FCCardPresenter())
         alertasAdapter.add(LecturaFC(valorBpm = 145, hora = "14:15 - Taquicardia"))
         alertasAdapter.add(LecturaFC(valorBpm = 45, hora = "10:30 - Bradicardia"))
         alertasAdapter.add(LecturaFC(valorBpm = 150, hora = "08:00 - Taquicardia"))
         rowsAdapter.add(ListRow(HeaderItem(2, "Alertas recientes"), alertasAdapter))
-        */
 
         this.adapter = rowsAdapter
     }
