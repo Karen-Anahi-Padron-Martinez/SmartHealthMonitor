@@ -2,9 +2,11 @@ package mx.utng.kapm.wear.presentation.watchface
 
 import android.content.Context
 import android.graphics.*
+import android.view.SurfaceHolder
 import androidx.wear.watchface.*
 import androidx.wear.watchface.style.CurrentUserStyleRepository
 import java.time.ZonedDateTime
+import mx.utng.kapm.wear.presentation.WearHealthState
 
 class SmartHealthRenderer(
     private val context: Context,
@@ -15,7 +17,8 @@ class SmartHealthRenderer(
     interactiveDrawModeUpdateDelayMillis: Long
 ) : Renderer.CanvasRenderer2<Renderer.SharedAssets>(
     surfaceHolder, currentUserStyleRepository, watchState,
-    CanvasType.HARDWARE, interactiveDrawModeUpdateDelayMillis
+    CanvasType.HARDWARE, interactiveDrawModeUpdateDelayMillis,
+    true
 ) {
     private val paintHora = Paint().apply {
         color = Color.WHITE; textSize = 72f; isAntiAlias = true
@@ -29,7 +32,7 @@ class SmartHealthRenderer(
     }
 
     override suspend fun createSharedAssets(): SharedAssets =
-        object : SharedAssets { override fun onDestroy() {} }()
+        object : SharedAssets { override fun onDestroy() {} }
 
     override fun render(
         canvas: Canvas,

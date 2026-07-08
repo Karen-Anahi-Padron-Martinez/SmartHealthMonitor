@@ -1,4 +1,4 @@
-package mx.edu.utng.kapm.wear.presentation.components
+package mx.utng.kapm.wear.presentation.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.*
-import androidx.wear.compose.material3.MaterialTheme
 
 @Composable
 fun WearFCCard(
@@ -39,7 +38,7 @@ fun WearFCCard(
             Text(
                 text  = "bpm",
                 style = MaterialTheme.typography.caption3,
-                color = MaterialTheme.colors.onSurfaceVariant
+                color = MaterialTheme.colors.onSurface
             )
         }
     }

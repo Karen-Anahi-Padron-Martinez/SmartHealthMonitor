@@ -74,7 +74,7 @@ fun TarjetaDato(
 @Preview(showBackground = true, name = "TarjetaDato - Con íconos")
 @Composable
 private fun TarjetaDatoPreview() {
-    SmartHealthMonitorTheme(dynamicColor = false) {
+    SmartHealthMonitorTheme {
         Column(
             Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)

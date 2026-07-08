@@ -22,13 +22,6 @@ fun SmartHealthWearNavGraph() {
         navController    = navController,
         startDestination = WearScreens.DASHBOARD
     ) {
-        composable(WearScreens.DASHBOARD) {
-            WearDashboardScreen(
-                onAlertClick = {
-                    navController.navigate(WearScreens.ALERTA)
-                }
-            )
-        }
         composable(WearScreens.ALERTA) {
             val vm: WearDashboardViewModel = viewModel()
             val fc by vm.fc.collectAsState()

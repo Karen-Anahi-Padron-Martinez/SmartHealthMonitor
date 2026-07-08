@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.cancel
 
 /**
  * Servicio que escucha mensajes del wearable vía Wearable Data Layer API.
@@ -81,6 +82,6 @@ class WearListenerService : WearableListenerService() {
     override fun onDestroy() {
         super.onDestroy()
         // Cancelar el scope cuando el servicio muere
-        serviceScope.coroutineContext[SupervisorJob()]?.cancel()
+        serviceScope.cancel()
     }
 }

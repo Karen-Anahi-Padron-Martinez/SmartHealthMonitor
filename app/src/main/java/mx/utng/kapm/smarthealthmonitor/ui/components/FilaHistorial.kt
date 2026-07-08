@@ -11,8 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import mx.utng.kapm.smarthealthmonitor.data.models.LecturaFC
-import mx.utng.kapm.smarthealthmonitor.data.models.MockData
+import mx.utng.kapm.smarthealthmonitor.data.db.LecturaFC
 import mx.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
 
 @Composable
@@ -50,7 +49,7 @@ fun FilaHistorial(
 @Composable
 private fun FilaHistorialNormalPreview() {
     SmartHealthMonitorTheme {
-        FilaHistorial(lectura = LecturaFC(1, 78, "11:00", true))
+        FilaHistorial(lectura = LecturaFC(id = 1, valorBpm = 78, hora = "11:00", esNormal = true))
     }
 }
 
@@ -58,6 +57,6 @@ private fun FilaHistorialNormalPreview() {
 @Composable
 private fun FilaHistorialAnormalPreview() {
     SmartHealthMonitorTheme {
-        FilaHistorial(lectura = LecturaFC(4, 95, "09:30", false))
+        FilaHistorial(lectura = LecturaFC(id = 4, valorBpm = 95, hora = "09:30", esNormal = false))
     }
 }

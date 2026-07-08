@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.wear.compose.material.*
-import mx.edu.utng.kapm.wear.presentation.LecturaFC
+import mx.utng.kapm.wear.presentation.LecturaFC
 
 @Composable
 fun WearFilaHistorial(lectura: LecturaFC) {

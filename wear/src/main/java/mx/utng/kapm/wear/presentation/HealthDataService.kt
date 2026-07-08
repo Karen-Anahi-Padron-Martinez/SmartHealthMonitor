@@ -5,6 +5,7 @@ import androidx.health.services.client.HealthServices
 import androidx.health.services.client.PassiveListenerService
 import androidx.health.services.client.data.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.guava.await
 
 class HealthDataService : PassiveListenerService() {
 

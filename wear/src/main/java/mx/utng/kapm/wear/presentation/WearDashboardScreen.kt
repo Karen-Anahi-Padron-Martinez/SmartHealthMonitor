@@ -1,4 +1,4 @@
-package mx.edu.utng.kapm.wear.presentation
+package mx.utng.kapm.wear.presentation
 
 
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.material.*
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
-import mx.edu.utng.bgma.smarthealthmonitor.wear.presentation.components.WearFCCard
+import mx.utng.kapm.wear.presentation.components.WearFCCard
 
 @Composable
 fun WearDashboardScreen(

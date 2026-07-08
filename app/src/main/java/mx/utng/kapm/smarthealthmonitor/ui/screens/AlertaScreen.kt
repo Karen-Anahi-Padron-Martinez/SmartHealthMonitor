@@ -1,4 +1,4 @@
-package mx.edu.utng.kapm.smarthealthmonitor.ui.screens
+package mx.utng.kapm.smarthealthmonitor.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -8,7 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
-import mx.edu.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
+import mx.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
 
 @Composable
 fun AlertaScreen(

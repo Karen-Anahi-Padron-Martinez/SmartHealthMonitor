@@ -1,4 +1,4 @@
-package mx.edu.utng.kapm.smarthealthmonitor.ui.components
+package mx.utng.kapm.smarthealthmonitor.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,12 +22,11 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-//import androidx.compose.runtime.mutableStateOf
-// Import importante para el botón de simulación
-import mx.edu.utng.kapm.smarthealthmonitor.ui.screens.AlertaScreen
-import mx.edu.utng.kapm.smarthealthmonitor.data.SmartHealthRepository
-import mx.edu.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
-import mx.edu.utng.kapm.smarthealthmonitor.ui.viewmodel.DashboardViewModel
+import mx.utng.kapm.smarthealthmonitor.ui.components.TarjetaDato
+import mx.utng.kapm.smarthealthmonitor.ui.components.FilaHistorial
+import mx.utng.kapm.smarthealthmonitor.data.SmartHealthRepository
+import mx.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
+import mx.utng.kapm.smarthealthmonitor.ui.viewmodel.DashboardViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,7 +45,7 @@ fun DashboardScreen(
     // Observar estados del ViewModel
     val fcState by viewModel.fc.collectAsState()
     val pasosState by viewModel.pasos.collectAsState()
-    val spO2State by viewModel.spO2.collectAsState()
+    val spO2State by viewModel.spo2.collectAsState()
     val historial by viewModel.historial.collectAsState()
 
     // Usar valor manual (si existe) o el del estado (reactivo)
@@ -99,8 +98,7 @@ fun DashboardScreen(
                         valor      = "$fc",
                         unidad     = "bpm",
                         label      = "Frecuencia cardíaca",
-                        colorValor = MaterialTheme.colorScheme.error,
-                        esNormal   = fc in 60..100
+                        colorValor = MaterialTheme.colorScheme.error
                     )
                 }
 
@@ -120,8 +118,7 @@ fun DashboardScreen(
                         valor      = "$spO2",
                         unidad     = "%",
                         label      = "Saturación de Oxígeno",
-                        colorValor = MaterialTheme.colorScheme.tertiary,
-                        esNormal   = spO2 >= 95
+                        colorValor = MaterialTheme.colorScheme.tertiary
                     )
                 }
 

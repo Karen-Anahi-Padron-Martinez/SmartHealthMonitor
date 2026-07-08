@@ -75,6 +75,9 @@ dependencies {
     implementation("androidx.wear.watchface:watchface-complications-rendering:1.2.1")
     implementation("androidx.wear.watchface:watchface-style:1.2.1")
 
-
-
+    // Play services tasks support for coroutines await()
+    implementation(libs.kotlinx.coroutines.play.services)
+    // Compose Material for Icons support
+    implementation("androidx.compose.material:material:1.7.5")
+    implementation(libs.androidx.compose.material.icons.extended)
 }

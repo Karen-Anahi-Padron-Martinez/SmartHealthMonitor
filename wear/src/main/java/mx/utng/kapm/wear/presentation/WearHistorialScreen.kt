@@ -1,7 +1,6 @@
 package mx.utng.kapm.wear.presentation
 
 import androidx.compose.foundation.layout.size
-import mx.edu.utng.kapm.wear.presentation.WearDashboardViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier

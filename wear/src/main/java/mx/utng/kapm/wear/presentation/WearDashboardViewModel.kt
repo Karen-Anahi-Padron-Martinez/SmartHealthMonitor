@@ -1,4 +1,4 @@
-package mx.edu.utng.kapm.wear.presentation
+package mx.utng.kapm.wear.presentation
 
 
 
