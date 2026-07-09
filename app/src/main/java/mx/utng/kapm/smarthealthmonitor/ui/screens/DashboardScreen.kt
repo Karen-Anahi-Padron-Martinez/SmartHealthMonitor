@@ -191,7 +191,15 @@ fun DashboardTopBar(title: String) {
             // CastButton: AndroidView que envuelve MediaRouteButton
             AndroidView(
                 factory = { context ->
-                    MediaRouteButton(context).apply {
+                    val themedContext = android.view.ContextThemeWrapper(
+                        context,
+                        androidx.mediarouter.R.style.Theme_MediaRouter
+                    )
+                    MediaRouteButton(themedContext).apply {
+                        layoutParams = android.view.ViewGroup.LayoutParams(
+                            android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+                            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+                        )
                         CastButtonFactory.setUpMediaRouteButton(context, this)
                     }
                 },
