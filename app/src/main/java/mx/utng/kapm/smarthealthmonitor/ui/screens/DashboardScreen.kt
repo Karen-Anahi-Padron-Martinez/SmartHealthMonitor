@@ -27,6 +27,9 @@ import mx.utng.kapm.smarthealthmonitor.ui.components.FilaHistorial
 import mx.utng.kapm.smarthealthmonitor.data.SmartHealthRepository
 import mx.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
 import mx.utng.kapm.smarthealthmonitor.ui.viewmodel.DashboardViewModel
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.mediarouter.app.MediaRouteButton
+import com.google.android.gms.cast.framework.CastButtonFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,7 +76,7 @@ fun DashboardScreen(
         Scaffold(
             // ── Snackbar host en el Scaffold ───────────────
             snackbarHost = { SnackbarHost(hostState = snackbarHost) },
-            topBar  = { /* TopAppBar existente */ },
+            topBar  = { DashboardTopBar(title = "SmartHealth Monitor") },
             floatingActionButton = {
                 FloatingActionButton(
                     onClick        = { mostrarAlerta = true },
@@ -176,5 +179,23 @@ private fun DashboardScreenPreview() {
         fcManual = 75,
         pasosManual = 4500,
         spO2Manual = 98
+    )
+}
+
+@Composable
+fun DashboardTopBar(title: String) {
+    TopAppBar(
+        title = { Text(title) },
+        actions = {
+            // CastButton: AndroidView que envuelve MediaRouteButton
+            AndroidView(
+                factory = { context ->
+                    MediaRouteButton(context).apply {
+                        CastButtonFactory.setUpMediaRouteButton(context, this)
+                    }
+                },
+                modifier = Modifier.size(48.dp)
+            )
+        }
     )
 }
