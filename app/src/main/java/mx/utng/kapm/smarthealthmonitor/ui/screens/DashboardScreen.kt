@@ -182,6 +182,7 @@ private fun DashboardScreenPreview() {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardTopBar(title: String) {
     TopAppBar(
