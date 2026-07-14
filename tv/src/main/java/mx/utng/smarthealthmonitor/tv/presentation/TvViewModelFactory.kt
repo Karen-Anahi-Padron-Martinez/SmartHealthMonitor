@@ -10,7 +10,7 @@ class TvViewModelFactory(private val context: Context) : ViewModelProvider.Facto
         if (modelClass.isAssignableFrom(TvViewModel::class.java)) {
             SmartHealthRepository.init(context)
             @Suppress("UNCHECKED_CAST")
-            return TvViewModel() as T
+            return TvViewModel(SmartHealthRepository, context.applicationContext) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
