@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -20,6 +21,20 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Leer credenciales de local.properties
+        val properties = java.util.Properties()
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { properties.load(it) }
+        }
+        val brokerUrl = properties.getProperty("mqtt.broker_url") ?: "ssl://abc123def456.s1.eu.hivemq.cloud:8883"
+        val username = properties.getProperty("mqtt.username") ?: "tu-usuario-hivemq"
+        val password = properties.getProperty("mqtt.password") ?: "tu-contraseña-segura"
+
+        buildConfigField("String", "MQTT_BROKER_URL", "\"$brokerUrl\"")
+        buildConfigField("String", "MQTT_USERNAME", "\"$username\"")
+        buildConfigField("String", "MQTT_PASSWORD", "\"$password\"")
     }
 
     buildTypes {
@@ -68,6 +83,11 @@ dependencies {
     // Cast SDK
     implementation("androidx.mediarouter:mediarouter:1.7.0")
     implementation("com.google.android.gms:play-services-cast-framework:21.5.0")
+
+    // Eclipse Paho MQTT y Kotlinx Serialization
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.paho.mqtt)
+    implementation(libs.paho.android.service)
 
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))

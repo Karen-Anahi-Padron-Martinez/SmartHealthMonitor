@@ -20,6 +20,9 @@ kotlinxCoroutinesGuava = "1.7.3"
 guava = "33.0.0-android"
 kotlinxCoroutinesPlayServices = "1.7.3"
 lifecycleViewmodelCompose = "2.8.0"
+kotlinx-serialization = "1.6.3"
+paho-client = "1.2.5"
+paho-service = "1.1.1"
 
 
 [libraries]
@@ -50,10 +53,15 @@ guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
 jetbrains-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+paho-mqtt = { group = "org.eclipse.paho", name = "org.eclipse.paho.client.mqttv3", version.ref = "paho-client" }
+paho-android-service = { group = "org.eclipse.paho", name = "org.eclipse.paho.android.service", version.ref = "paho-service" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
 
 

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -18,6 +19,19 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        // Leer credenciales de local.properties
+        val properties = java.util.Properties()
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { properties.load(it) }
+        }
+        val brokerUrl = properties.getProperty("mqtt.broker_url") ?: "ssl://abc123def456.s1.eu.hivemq.cloud:8883"
+        val username = properties.getProperty("mqtt.username") ?: "tu-usuario-hivemq"
+        val password = properties.getProperty("mqtt.password") ?: "tu-contraseña-segura"
+
+        buildConfigField("String", "MQTT_BROKER_URL", "\"$brokerUrl\"")
+        buildConfigField("String", "MQTT_USERNAME", "\"$username\"")
+        buildConfigField("String", "MQTT_PASSWORD", "\"$password\"")
     }
 
     buildTypes {
@@ -36,6 +50,7 @@ android {
     useLibrary("wear-sdk")
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -80,4 +95,9 @@ dependencies {
     // Compose Material for Icons support
     implementation("androidx.compose.material:material:1.7.5")
     implementation(libs.androidx.compose.material.icons.extended)
+
+    // Eclipse Paho MQTT y Kotlinx Serialization
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.paho.mqtt)
+    implementation(libs.paho.android.service)
 }
