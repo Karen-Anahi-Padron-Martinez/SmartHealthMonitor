@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-sdk tools:overrideLibrary="androidx.room.ktx, androidx.room, androidx.sqlite.db.framework, androidx.sqlite.db" />
 
     <!-- Declarar que es una app de TV -->
