@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -23,10 +25,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Leer credenciales de local.properties
-        val properties = java.util.Properties()
+        val properties = Properties()
         val localPropertiesFile = project.rootProject.file("local.properties")
         if (localPropertiesFile.exists()) {
-            localPropertiesFile.inputStream().use { properties.load(it) }
+            val stream = localPropertiesFile.inputStream()
+            properties.load(stream)
+            stream.close()
         }
         val brokerUrl = properties.getProperty("mqtt.broker_url") ?: "ssl://abc123def456.s1.eu.hivemq.cloud:8883"
         val username = properties.getProperty("mqtt.username") ?: "tu-usuario-hivemq"
