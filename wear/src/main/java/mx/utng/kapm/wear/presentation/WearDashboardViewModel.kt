@@ -28,15 +28,23 @@ class WearDashboardViewModel(application: Application) : AndroidViewModel(applic
     init {
         mqttPublisher.connect()
 
-        // Observar cambios de frecuencia y publicar vía MQTT
+        // Observar cambios de frecuencia y publicar vía MQTT y Neon en la nube
         viewModelScope.launch {
+            val neonRepo = mx.utng.kapm.wear.data.WearNeonRepository()
             WearHealthState.fc.collect { bpm ->
                 val estado = when {
                     bpm < 60 -> "FC Baja"
                     bpm > 100 -> "FC Alta"
                     else -> "Normal"
                 }
+                // Publicar vía MQTT
                 mqttPublisher.publishFC(bpm, estado)
+
+                // Publicar a Neon en IO thread
+                launch(kotlinx.coroutines.Dispatchers.IO) {
+                    runCatching { neonRepo.publicarLectura(bpm, estado) }
+                        .onFailure { android.util.Log.w("WEAR", "Sin red para Neon: ${it.message}") }
+                }
             }
         }
 
