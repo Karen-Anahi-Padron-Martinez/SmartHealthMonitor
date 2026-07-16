@@ -49,6 +49,8 @@ fun TvDetailScreen(
                  color=Color.White, fontWeight=FontWeight.ExtraBold)
             Text("Estado: ${lectura.estado}",
                  style=MaterialTheme.typography.bodyLarge, color=Color.White.copy(0.8f))
+            Text("Dispositivo: ${lectura.dispositivo.uppercase()}",
+                 style=MaterialTheme.typography.bodyLarge, color=Color.White.copy(0.8f))
             Text("Hora: ${lectura.hora}",
                  style=MaterialTheme.typography.bodyMedium, color=Color.White.copy(0.6f))
         }

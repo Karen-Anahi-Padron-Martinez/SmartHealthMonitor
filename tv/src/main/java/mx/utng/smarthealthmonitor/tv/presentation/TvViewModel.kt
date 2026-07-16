@@ -5,17 +5,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import mx.utng.kapm.smarthealthmonitor.data.SmartHealthRepository
+import mx.utng.smarthealthmonitor.tv.data.TvNeonRepository
 import mx.utng.smarthealthmonitor.tv.domain.model.TvUiState
-import mx.utng.smarthealthmonitor.domain.model.LecturaFC as DomainLecturaFC
+import mx.utng.smarthealthmonitor.domain.model.LecturaFC
 import mx.utng.smarthealthmonitor.tv.mqtt.MqttTvSubscriber
 import mx.utng.smarthealthmonitor.mqtt.TvMessage
 
 class TvViewModel(
-    private val repository : SmartHealthRepository,
-    private val context    : Context
+    private val context: Context
 ) : ViewModel() {
 
+    private val neonRepo = TvNeonRepository()
     private val _state = MutableStateFlow(TvUiState())
     val state: StateFlow<TvUiState> = _state.asStateFlow()
 
@@ -25,27 +25,7 @@ class TvViewModel(
 
     init {
         mqttSubscriber.connect()
-
-        // Observar historial reactivo del Room DAO
-        viewModelScope.launch {
-            repository.obtenerHistorial()
-                .catch { e -> _state.update { it.copy(error = e.message, isLoading = false) } }
-                .collect { lecturas ->
-                    _state.update {
-                        it.copy(
-                            lecturas = lecturas.map { db ->
-                                DomainLecturaFC(
-                                    id = db.id,
-                                    bpm = db.valorBpm,
-                                    estado = if (db.esNormal) "Normal" else "Anómala",
-                                    hora = db.hora
-                                )
-                            },
-                            isLoading = false
-                        )
-                    }
-                }
-        }
+        cargarDatos()
 
         // Observar mensajes MQTT y actualizar el estado de la UI
         viewModelScope.launch {
@@ -60,6 +40,37 @@ class TvViewModel(
             }
         }
     }
+
+    fun cargarDatos() {
+        viewModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
+            try {
+                val lecturasDto = neonRepo.obtenerHistorialCompleto(50)
+                val statsDto = neonRepo.obtenerEstadisticas()
+                
+                // Consultas Avanzadas
+                val alertasDto = neonRepo.obtenerAlertas24h()
+                val promedioHoraDto = neonRepo.obtenerPromedioPorHora()
+                val recienteDispositivoDto = neonRepo.obtenerRecientePorDispositivo()
+                val taquicardiaDto = neonRepo.obtenerTaquicardia()
+
+                _state.update { it.copy(
+                    lecturas = lecturasDto.map { dto -> dto.toLecturaFC() },
+                    estadisticas = statsDto.map { dto -> dto.toLecturaFC() },
+                    alertas24h = alertasDto.map { dto -> dto.toLecturaFC() },
+                    promediosPorHora = promedioHoraDto.map { dto -> dto.toLecturaFC() },
+                    recientesPorDispositivo = recienteDispositivoDto.map { dto -> dto.toLecturaFC() },
+                    taquicardia = taquicardiaDto.map { dto -> dto.toLecturaFC() },
+                    isLoading = false,
+                    error = null
+                )}
+            } catch (e: Exception) {
+                _state.update { it.copy(error = e.message, isLoading = false) }
+            }
+        }
+    }
+
+    fun refresh() = cargarDatos()
 
     override fun onCleared() {
         mqttSubscriber.disconnect()

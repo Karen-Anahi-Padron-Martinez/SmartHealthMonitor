@@ -37,7 +37,7 @@ fun FcCardItem(
                  color = Color.White,
                  fontWeight = FontWeight.Bold)
             Column {
-                Text(lectura.estado,
+                Text("${lectura.estado} (${lectura.dispositivo.uppercase()})",
                      style = MaterialTheme.typography.bodyMedium,
                      color = Color.White.copy(alpha = 0.8f))
                 Text(lectura.hora,
