@@ -122,16 +122,6 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 }
 
-val copySharedDatabaseFiles by tasks.registering(Copy::class) {
-    from("../app/src/main/java/mx/utng/kapm/smarthealthmonitor/data") {
-        include("bd/**")
-        include("db/**")
-        include("SmartHealthRepository.kt")
-        include("MockData.kt")
-    }
-    into("src/main/java/mx/utng/kapm/smarthealthmonitor/data")
-}
-
 val copyLauncherResources by tasks.registering(Copy::class) {
     from("../app/src/main/res") {
         include("drawable/ic_launcher_background.xml")
@@ -142,8 +132,7 @@ val copyLauncherResources by tasks.registering(Copy::class) {
 }
 
 tasks.configureEach {
-    if (name != "copySharedDatabaseFiles" && name != "copyLauncherResources" && name != "clean" && !name.startsWith("preBuild")) {
-        dependsOn(copySharedDatabaseFiles)
+    if (name != "copyLauncherResources" && name != "clean" && !name.startsWith("preBuild")) {
         dependsOn(copyLauncherResources)
     }
 }

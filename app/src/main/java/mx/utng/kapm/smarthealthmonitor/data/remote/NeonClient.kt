@@ -4,7 +4,7 @@ import mx.utng.kapm.smarthealthmonitor.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson:GsonConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 object NeonClient {
     private val BASE_URL = "https://${BuildConfig.NEON_HOST}/"

@@ -6,6 +6,7 @@ import kotlinx.coroutines.*
 import mx.utng.kapm.smarthealthmonitor.data.db.LecturaFC
 import mx.utng.kapm.smarthealthmonitor.data.db.LecturaFCDao
 import mx.utng.kapm.smarthealthmonitor.data.db.SmartHealthDB
+import mx.utng.kapm.smarthealthmonitor.data.repository.SyncRepository
 
 object SmartHealthRepository {
 
