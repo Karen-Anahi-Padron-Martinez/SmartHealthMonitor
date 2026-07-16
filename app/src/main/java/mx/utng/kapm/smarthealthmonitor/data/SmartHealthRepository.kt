@@ -21,12 +21,16 @@ object SmartHealthRepository {
     val temperaturaFlow: StateFlow<Double> = _temperaturaFlow.asStateFlow()
 
     private var dao: LecturaFCDao? = null
+    var syncRepository: SyncRepository? = null
+        private set
 
     private val repositoryScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     private var simulationJob: Job? = null
 
     fun init(context: Context) {
-        dao = SmartHealthDB.getDatabase(context).lecturaDao()
+        val db = SmartHealthDB.getDatabase(context)
+        dao = db.lecturaDao()
+        syncRepository = SyncRepository(dao!!)
         startSimulation()
     }
 
@@ -75,7 +79,11 @@ object SmartHealthRepository {
 
     suspend fun actualizarFC(bpm: Int) {
         fcFlow.value = bpm
-        dao?.insertar(LecturaFC(valorBpm = bpm))
+        val estado = if (bpm in 60..100) "Normal" else if (bpm < 60) "FC Baja" else "FC Alta"
+        val hora = java.text.SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault()).format(java.util.Date())
+        syncRepository?.insertarLectura(
+            LecturaFC(bpm = bpm, estado = estado, dispositivo = "app", hora = hora)
+        )
     }
 
     fun actualizarPasos(pasos: Int) {
