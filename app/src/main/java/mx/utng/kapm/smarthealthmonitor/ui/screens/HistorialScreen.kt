@@ -14,6 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.material.icons.filled.CloudDone
+import androidx.compose.material.icons.filled.Sync
+import androidx.compose.ui.unit.sp
 import mx.utng.kapm.smarthealthmonitor.data.db.LecturaFC
 import mx.utng.kapm.smarthealthmonitor.ui.theme.SmartHealthMonitorTheme
 import mx.utng.kapm.smarthealthmonitor.ui.viewmodel.DashboardViewModel
@@ -94,11 +97,31 @@ fun FilaHistorialRoom(lectura: LecturaFC) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = lectura.hora,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = lectura.hora,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                if (lectura.sincronizado) {
+                    Icon(
+                        imageVector = Icons.Default.CloudDone,
+                        contentDescription = "Sincronizado con Neon",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(16.dp)
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Default.Sync,
+                        contentDescription = "Pendiente de sincronizar",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                        modifier = Modifier.size(16.dp)
+                    )
+                }
+            }
             Text(
                 text = "${lectura.valorBpm} bpm",
                 style = MaterialTheme.typography.titleMedium,
